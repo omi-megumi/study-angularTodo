@@ -1,0 +1,28 @@
+<h3>タスクの編集</h3>
+
+<!--編集したいタスクのidと合致するものを表示する-->
+<div *ngIf="task">
+<!--  <p>{{ task.title }}</p>-->
+<!--  <p>{{ task.exposition }}</p>-->
+<!--  <p>期限: {{ task.deadline | date: 'yyyy/MM/dd' }}</p>-->
+<!--  <p>ステータス: {{ task.status === 0 ? '' : '完了' }}</p>-->
+
+  <form (ngSubmit)="updateItem()">
+    <label>タスク名</label>
+      <input [(ngModel)]="task.title" name="title" required /><br>
+    <label>説明</label>
+      <input [(ngModel)]="task.exposition" name="exposition" required /><br>
+    <label>期限</label>
+      <input [(ngModel)]="task.deadline" name="deadline" type="date" required /><br>
+    <label>ステータス</label>
+      <select [(ngModel)]="task.status" name="status" required>
+        <option [ngValue]="0">未完了</option>
+        <option [ngValue]="1">完了</option>
+      </select><br>
+    <button type="submit">保存</button>
+  </form>
+</div>
+
+<div *ngIf="!task">
+  <p>タスクが見つかりません</p>
+</div>

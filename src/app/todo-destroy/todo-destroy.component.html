@@ -1,0 +1,15 @@
+<p>todo-destroy works!</p>
+<h3>タスクの削除</h3>
+
+<!--編集したいタスクのidと合致するものを表示する-->
+<div *ngIf="task">
+    <p>{{ task.title }}</p>
+    <p>{{ task.exposition }}</p>
+    <p>期限: {{ task.deadline | date: 'yyyy/MM/dd' }}</p>
+    <p>ステータス: {{ task.status === 0 ? '未完了' : '完了' }}</p>
+  <button type="button" (click)="destroyItem()">タスクを削除</button>
+</div>
+
+<div *ngIf="!task">
+  <p>タスクが見つかりません</p>
+</div>

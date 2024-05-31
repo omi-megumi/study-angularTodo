@@ -1,0 +1,48 @@
+<h3>TODO一覧</h3>
+<!--<pre>{{todoList | json}}</pre>-->
+<!--配列の中身を一つずつ表示する-->
+<p>未完了のタスク</p>
+<ul>
+  <li *ngFor="let todo of todoList$ | async">
+    <div *ngIf="todo.status === 0">
+      - {{ todo.title }}
+      - {{ todo.exposition }}
+      - {{ todo.deadline | date:'yyyy/MM/dd' }}
+      <a [routerLink]="['/edit', todo.id]">編集</a>
+      <a [routerLink]="['/destroy', todo.id]">削除</a>
+    </div>
+  </li>
+</ul>
+
+<p>完了したタスク</p>
+<ul>
+  <li *ngFor="let todo of todoList$ | async">
+    <div *ngIf="todo.status === 1">
+      - {{ todo.title }}
+      - {{ todo.exposition }}
+      - {{ todo.deadline | date:'yyyy/MM/dd' }}
+      <a [routerLink]="['/edit', todo.id]">編集</a>
+      <a [routerLink]="['/destroy', todo.id]">削除</a>
+    </div>
+  </li>
+</ul>
+
+<h3>検索</h3>
+<form (ngSubmit)="onSearch()">
+  <input [(ngModel)]="searchKeyword" name="searchKeyword" />
+  <button type="submit">検索</button>
+</form>
+
+<p>検索結果</p>
+<ul *ngIf="filteredTodoList.length > 0; else noResults">
+  <li *ngFor="let todo of filteredTodoList">
+    - {{ todo.title }}
+    - {{ todo.exposition }}
+    - {{ todo.deadline | date:'yyyy/MM/dd' }}
+    <a [routerLink]="['/edit', todo.id]">編集</a>
+    <a [routerLink]="['/destroy', todo.id]">削除</a>
+  </li>
+</ul>
+<ng-template #noResults>
+  <p>該当するタスクが見つかりません。</p>
+</ng-template>

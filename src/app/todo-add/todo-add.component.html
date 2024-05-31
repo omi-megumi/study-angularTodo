@@ -1,0 +1,11 @@
+<h3>タスクの追加</h3>
+
+<div class="content">
+  <label for="input-title">タスク名</label>
+  <input type="text" id="input-title" [(ngModel)]="title"><br>
+  <label for="input-exposition">説明</label>
+  <input type="text" id="input-exposition" [(ngModel)]="exposition"><br>
+  <label>期限</label>
+  <input type="date" [(ngModel)]="deadline"><br>
+  <button type="button" (click)="addNewItem()">タスクを追加</button>
+</div>
